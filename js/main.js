@@ -91,7 +91,7 @@ if (makeSel && modelSel) {
     modelSel.innerHTML = '<option value="">Any model</option>';
     (models[makeSel.value] || []).forEach((m) => modelSel.add(new Option(m, m)));
   });
-  document.getElementById('finder').addEventListener('submit', (e) => {
+  document.getElementById('finder-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const q = [makeSel.value, modelSel.value].filter(Boolean).join(' ');
     const cat = document.getElementById('part').value;
