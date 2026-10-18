@@ -41,6 +41,8 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+/* keep anchor targets clear of the sticky header */
+#find, #reg, #finder, [id] { scroll-margin-top: 104px; }
 
 body {
   margin: 0;
@@ -145,7 +147,7 @@ p  { margin: 0 0 1em; }
 /* --- buttons ---------------------------------------------------------- */
 
 .btn {
-  position: relative; overflow: hidden;
+  position: relative; overflow: hidden; isolation: isolate;
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   padding: 15px 28px; border-radius: 0;
   font-family: var(--mono); font-weight: 500; font-size: .76rem;
@@ -155,7 +157,7 @@ p  { margin: 0 0 1em; }
 }
 .btn > * { position: relative; z-index: 1; }
 .btn::before {
-  content: ""; position: absolute; inset: 0; background: var(--red);
+  content: ""; position: absolute; inset: 0; z-index: -1; background: var(--red);
   transform: scaleX(0); transform-origin: left; transition: transform .38s var(--ease);
 }
 .btn:hover { transform: translateY(-2px); }
@@ -203,20 +205,37 @@ p  { margin: 0 0 1em; }
 .schematic g { fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .schematic path { stroke-dasharray: 100; stroke-dashoffset: 100; }
 
-.sc-frame path { stroke: var(--red); stroke-width: 2.4; filter: drop-shadow(0 0 7px rgba(227, 6, 19, .55)); animation: draw .95s var(--ease) .15s forwards; }
-.sc-inner path { stroke: #5f6b75; stroke-width: 1.5; animation: draw .8s var(--ease) .75s forwards; }
-.sc-arm   path { stroke: #5f6b75; stroke-width: 1.5; animation: draw .4s var(--ease) 1.2s forwards; }
-.sc-dim   path { stroke: var(--faint); stroke-width: 1; animation: draw .5s var(--ease) 1.35s forwards; }
-.sc-bush circle { stroke: var(--red); stroke-width: 1.8; opacity: 0; transform-origin: center; animation: pop .45s var(--ease) forwards; }
-.sc-bush circle:nth-child(1), .sc-bush circle:nth-child(2) { animation-delay: 1.05s; }
-.sc-bush circle:nth-child(3), .sc-bush circle:nth-child(4) { animation-delay: 1.15s; }
-.sc-bush circle:nth-child(5), .sc-bush circle:nth-child(6) { animation-delay: 1.25s; }
-.sc-bush circle:nth-child(7), .sc-bush circle:nth-child(8) { animation-delay: 1.35s; }
-.sc-mark path { stroke: var(--red); stroke-width: 1.4; opacity: 0; animation: blink 1.6s steps(1) 1.4s infinite; }
+/* 1. car body draws */
+.sc-body path  { stroke: #6a757f; stroke-width: 2; animation: draw .9s var(--ease) .15s forwards; }
+/* 2. cabin */
+.sc-glass path { stroke: #39424a; stroke-width: 1.4; animation: draw .5s var(--ease) .8s forwards; }
+/* 3. wheels */
+.sc-wheel rect { stroke: #6a757f; stroke-width: 2; fill: #11161a; opacity: 0; animation: pop .4s var(--ease) forwards; }
+.sc-wheel rect:nth-child(1) { animation-delay: .95s; }
+.sc-wheel rect:nth-child(2) { animation-delay: 1.02s; }
+.sc-wheel rect:nth-child(3) { animation-delay: 1.09s; }
+.sc-wheel rect:nth-child(4) { animation-delay: 1.16s; }
+/* 4. the parts they actually sell - front subframe + rear axle, in red */
+.sc-part path {
+  stroke: var(--red); stroke-width: 2.6;
+  filter: drop-shadow(0 0 7px rgba(227, 6, 19, .6));
+  animation: draw .85s var(--ease) 1.2s forwards;
+}
+.sc-part path:nth-child(n+4) { animation-delay: 1.45s; }
+/* 5. mounting bushes */
+.sc-bush circle { stroke: var(--red); stroke-width: 1.8; opacity: 0; transform-origin: center; animation: pop .4s var(--ease) 1.75s forwards; }
+/* 6. targets over each wheel */
+.sc-target circle { stroke: var(--red); stroke-width: 1.2; opacity: 0; transform-origin: center; animation: ring 1.9s var(--ease) 1.9s infinite; }
+.sc-target circle:nth-child(2) { animation-delay: 2.0s; }
+.sc-target circle:nth-child(3) { animation-delay: 2.1s; }
+.sc-target circle:nth-child(4) { animation-delay: 2.2s; }
+.sc-target path { stroke: rgba(227, 6, 19, .5); stroke-width: 1; stroke-dasharray: 100; stroke-dashoffset: 100; animation: draw .5s var(--ease) 1.85s forwards; }
+/* 7. dimensions */
+.sc-dim path { stroke: var(--faint); stroke-width: 1; animation: draw .5s var(--ease) 1.9s forwards; }
 
 @keyframes draw { to { stroke-dashoffset: 0; } }
-@keyframes pop  { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: scale(1); } }
-@keyframes blink { 0%, 60% { opacity: 1; } 61%, 100% { opacity: 0; } }
+@keyframes pop  { from { opacity: 0; transform: scale(.5); } to { opacity: 1; transform: scale(1); } }
+@keyframes ring { 0% { opacity: .9; transform: scale(.72); } 70%, 100% { opacity: 0; transform: scale(1.25); } }
 
 /* red scan line sweeping the drawing */
 .loader-sweep {
@@ -347,11 +366,12 @@ p  { margin: 0 0 1em; }
 }
 .hero .container {
   position: relative; z-index: 2;
-  display: grid; grid-template-columns: 1.08fr .92fr; gap: 64px;
-  align-items: center; padding: 86px 0;
+  display: grid; grid-template-columns: 1fr;
+  align-items: center; padding: 104px 0;
 }
+.hero-copy { max-width: 780px; }
 .hero h1 span { color: var(--red); }
-.hero p.lead { font-size: 1.12rem; max-width: 500px; color: var(--silver); }
+.hero p.lead { font-size: 1.14rem; max-width: 580px; color: var(--silver); }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px; }
 
 .hero-stats {
@@ -374,28 +394,34 @@ p  { margin: 0 0 1em; }
 }
 
 /* ==========================================================================
-   REGISTRATION SEARCH — chamfered panel
+   PART FINDER — two chamfered panels
    ========================================================================== */
 
-.reg-card {
-  position: relative; isolation: isolate;
+.find-section { padding-top: 0; }
+.find-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: stretch; }
+
+.panel {
+  position: relative; isolation: isolate; display: flex; flex-direction: column;
   background: var(--line-2);
   clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 26px 100%, 0 calc(100% - 26px));
   padding: clamp(26px, 3vw, 38px);
   box-shadow: var(--shadow);
 }
-.reg-card::before {
+.panel::before {
   content: ""; position: absolute; inset: 1px; z-index: -1;
   background: linear-gradient(165deg, #1b2127, #0d1115 65%);
   clip-path: polygon(0 0, calc(100% - 25px) 0, 100% 25px, 100% 100%, 25px 100%, 0 calc(100% - 25px));
 }
-.reg-card::after {
-  content: ""; position: absolute; top: 0; left: 0; width: 56px; height: 2px; background: var(--red);
+.panel::after { content: ""; position: absolute; top: 0; left: 0; width: 56px; height: 2px; background: var(--red); }
+.panel-n {
+  display: block; font-family: var(--mono); font-size: .66rem; font-weight: 500;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--red); margin-bottom: 12px;
 }
-.reg-card h2 { font-size: 1.4rem; margin-bottom: 9px; }
-.reg-card > p { color: var(--muted); font-size: .92rem; }
+.panel h3 { font-size: 1.32rem; margin-bottom: 9px; }
+.panel > p { color: var(--muted); font-size: .92rem; }
 
-.reg-form { display: grid; gap: 13px; margin-top: 22px; }
+/* registration plate */
+.reg-form, .finder-form { display: grid; gap: 13px; margin-top: 20px; }
 .plate {
   display: flex; align-items: stretch; height: 76px; margin: 0;
   background: #ffd500; border: 3px solid #0b0b0b; border-radius: 7px; overflow: hidden;
@@ -412,13 +438,18 @@ p  { margin: 0 0 1em; }
 .plate-band b { color: #fff; font: 700 .92rem var(--body); letter-spacing: .04em; }
 .plate input {
   flex: 1; min-width: 0; background: none; border: 0; border-radius: 0; color: #111;
-  text-align: center; font: 700 clamp(1.6rem, 3.3vw, 2.3rem)/1 "Arial Black", var(--body);
+  text-align: center; font: 700 clamp(1.5rem, 3vw, 2.1rem)/1 "Arial Black", var(--body);
   letter-spacing: .09em; text-transform: uppercase; padding: 0 10px;
 }
 .plate input::placeholder { color: rgba(0, 0, 0, .3); letter-spacing: .14em; font-size: .62em; }
 .plate input:focus { outline: none; }
 .plate:focus-within { box-shadow: 0 0 0 2px #ffd500, 0 0 0 6px rgba(227, 6, 19, .6), 0 12px 34px rgba(0, 0, 0, .55); }
-.reg-form .btn { width: 100%; padding: 17px; }
+
+/* make & model */
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+.finder-form select { height: 52px; }
+
+.reg-form .btn, .finder-form .btn { width: 100%; padding: 17px; }
 
 .reg-msg {
   margin: 15px 0 0; padding: 13px 15px;
@@ -429,20 +460,21 @@ p  { margin: 0 0 1em; }
 .reg-msg strong { color: #fff; }
 
 .reg-points {
-  list-style: none; padding: 18px 0 0; margin: 20px 0 0;
+  list-style: none; padding: 18px 0 0; margin: auto 0 0;
   border-top: 1px solid var(--line);
   display: flex; gap: 20px; flex-wrap: wrap;
   font-family: var(--mono); font-size: .66rem; letter-spacing: .09em;
   text-transform: uppercase; color: var(--muted);
 }
 .reg-points li { display: flex; align-items: center; gap: 8px; }
-.reg-points svg { width: 16px; color: var(--red); }
+.reg-points svg { width: 16px; color: var(--red); flex: none; }
+.panel .reg-points { margin-top: 24px; }
 
 /* ==========================================================================
    MAKES MARQUEE
    ========================================================================== */
 
-.makes { border-block: 1px solid var(--line); padding: 24px 0 28px; overflow: hidden; background: var(--ink); }
+.makes { border-bottom: 1px solid var(--line); padding: 20px 0 22px; overflow: hidden; background: var(--ink); }
 .makes-head {
   display: flex; justify-content: space-between; gap: 16px; margin-bottom: 20px;
   font-family: var(--mono); font-size: .66rem; font-weight: 500; letter-spacing: .2em;
@@ -525,26 +557,7 @@ p  { margin: 0 0 1em; }
 .cat-link svg { width: 14px; transition: transform .3s var(--ease); color: var(--red); }
 .cat:hover .cat-link svg { transform: translateX(6px); }
 
-/* ==========================================================================
-   PART FINDER
-   ========================================================================== */
-
-.finder {
-  position: relative; overflow: hidden;
-  background: linear-gradient(135deg, var(--graphite-2) 0%, var(--black) 100%);
-  border: 1px solid var(--line); border-left: 2px solid var(--red);
-  padding: clamp(28px, 4vw, 46px);
-  display: grid; grid-template-columns: 1fr 2fr; gap: 40px; align-items: center;
-}
-.finder::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .4;
-  background-image: repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 56px);
-  mask-image: linear-gradient(90deg, transparent, #000);
-}
-.finder h2 { font-size: 1.4rem; }
-.finder p { color: var(--muted); margin: 0; font-size: .92rem; }
-.finder form { display: grid; grid-template-columns: repeat(3, 1fr) auto; gap: 13px; position: relative; z-index: 1; }
-
+/* form controls */
 select, input, textarea {
   width: 100%; background: rgba(0, 0, 0, .45); border: 1px solid var(--line-2);
   color: var(--white); padding: 14px 15px; border-radius: 0;
@@ -912,7 +925,7 @@ textarea { min-height: 150px; resize: vertical; font-family: var(--body); }
   .trust-item:nth-child(2) { border-right: 0; }
   .trust-item:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
   .trust-item:nth-child(3) { padding-left: 0; }
-  .finder { grid-template-columns: 1fr; }
+  .find-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .header-phone { display: none; }
   .hero .container { gap: 44px; }
@@ -942,7 +955,7 @@ textarea { min-height: 150px; resize: vertical; font-family: var(--body); }
   .hero { min-height: auto; }
   .hero .container { padding: 56px 0 64px; }
   .reviews { grid-template-columns: 1fr; }
-  .finder form { grid-template-columns: 1fr 1fr; }
+
   .stats-row { grid-template-columns: 1fr 1fr; }
   .img-stack .years { right: 8px; bottom: -20px; }
   .section-head { margin-bottom: 34px; }
@@ -965,7 +978,7 @@ textarea { min-height: 150px; resize: vertical; font-family: var(--body); }
   .price s { font-size: .7rem; }
   .yrs { font-size: .56rem; }
   .product-go { display: none; }
-  .cats, .why-grid, .trust .container, .footer-grid, .form-row, .finder form { grid-template-columns: 1fr; }
+  .cats, .why-grid, .trust .container, .footer-grid, .form-row, .field-row { grid-template-columns: 1fr; }
   .trust-item { border-right: 0; border-bottom: 1px solid var(--line); padding-left: 0; }
   .trust-item[data-n]::before { right: 0; }
   .cat { aspect-ratio: 16/10; }
