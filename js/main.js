@@ -1,8 +1,52 @@
-// Loader
-window.addEventListener('load', () => {
-  const l = document.querySelector('.loader');
-  if (l) setTimeout(() => l.classList.add('done'), 500);
-});
+// ---------------------------------------------------------------------------
+// Loader: animated schematic + counter. Always completes, never traps anyone.
+// ---------------------------------------------------------------------------
+(() => {
+  const loader = document.getElementById('loader');
+  if (!loader) return;
+
+  let seen = false;
+  try { seen = sessionStorage.getItem('es-seen') === '1'; } catch (e) {}
+
+  const finish = () => {
+    loader.classList.add('done');
+    document.body.style.overflow = '';
+    try { sessionStorage.setItem('es-seen', '1'); } catch (e) {}
+    setTimeout(() => loader.remove(), 1000);
+  };
+
+  if (seen || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(); return; }
+
+  document.body.style.overflow = 'hidden';
+  const pct = document.getElementById('loader-pct');
+  const bar = document.getElementById('loader-bar');
+  const DURATION = 2150;
+  const start = performance.now();
+
+  const tick = (now) => {
+    const t = Math.min(1, (now - start) / DURATION);
+    const eased = 1 - Math.pow(1 - t, 2.2);          // decelerate toward 100
+    const v = Math.round(eased * 100);
+    if (pct) pct.textContent = String(v).padStart(2, '0');
+    if (bar) bar.style.width = v + '%';
+    if (t < 1) requestAnimationFrame(tick);
+    else setTimeout(finish, 260);
+  };
+  requestAnimationFrame(tick);
+  setTimeout(finish, DURATION + 2500);               // hard safety net
+})();
+
+// Scroll progress rail
+const scrollbar = document.getElementById('scrollbar');
+if (scrollbar) {
+  const onScroll = () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    scrollbar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  onScroll();
+}
 
 // Mobile menu
 const toggle = document.querySelector('.menu-toggle');
@@ -21,6 +65,11 @@ const io = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+// stagger siblings inside a grid so rows cascade rather than snapping in together
+document.querySelectorAll('.products, .cats, .why-grid, .reviews, .stats-row').forEach((grid) => {
+  [...grid.children].forEach((el, i) => el.style.setProperty('--d', Math.min(i, 7) * 70 + 'ms'));
+});
 
 // Part finder -> filters the shop page
 const models = {
