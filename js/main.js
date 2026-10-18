@@ -127,3 +127,26 @@ if (qty) {
   document.querySelectorAll('[data-qty]').forEach((b) => b.addEventListener('click', () => { qty.value = (+qty.value || 1) + (+b.dataset.qty); sync(); }));
   qty.addEventListener('change', sync);
 }
+
+// Registration lookup (UI only - hook up a VRM lookup API here later)
+const regForm = document.getElementById('reg-form');
+if (regForm) {
+  const input = document.getElementById('reg-input');
+  const msg = document.getElementById('reg-msg');
+  input.addEventListener('input', () => { input.value = input.value.toUpperCase().replace(/[^A-Z0-9 ]/g, ''); });
+  regForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const reg = input.value.replace(/\s+/g, '');
+    if (reg.length < 2) { input.focus(); return; }
+    // TODO: replace with real lookup, e.g.
+    // const vehicle = await fetch(`/api/vrm?reg=${reg}`).then(r => r.json());
+    // window.location.href = `shop.html?q=${encodeURIComponent(vehicle.make + ' ' + vehicle.model)}`;
+    msg.hidden = false;
+    msg.innerHTML = `Online reg lookup is coming soon. Call <a href="tel:+442844615148">028 4461 5148</a> or <a href="contact.html?reg=${encodeURIComponent(reg)}">send us your reg</a> and we'll find the right part for ${reg}.`;
+  });
+}
+
+// Prefill contact form from ?reg=
+const vehicleField = document.getElementById('vehicle');
+const regParam = new URLSearchParams(location.search).get('reg');
+if (vehicleField && regParam) vehicleField.value = 'Reg: ' + regParam.toUpperCase();
