@@ -20,39 +20,53 @@
 <div class="loader" id="loader">
   <div class="loader-grid"></div>
   <div class="loader-inner">
-    <svg class="schematic" viewBox="0 0 420 300" aria-hidden="true">
+    <svg class="schematic" viewBox="0 0 420 312" aria-hidden="true">
       <g class="sc-dim">
-        <path d="M38 268 H382" pathLength="100"/>
-        <path d="M38 262 V274 M382 262 V274" pathLength="100"/>
-        <path d="M18 52 V228" pathLength="100"/>
-        <path d="M12 52 H24 M12 228 H24" pathLength="100"/>
+        <path d="M96 95 V225" pathLength="100"/>
+        <path d="M90 95 H102 M90 225 H102" pathLength="100"/>
+        <path d="M133 300 H287" pathLength="100"/>
+        <path d="M133 294 V306 M287 294 V306" pathLength="100"/>
       </g>
-      <g class="sc-arm">
-        <path d="M38 140 H6" pathLength="100"/>
-        <path d="M382 140 H414" pathLength="100"/>
+      <g class="sc-body">
+        <path d="M190 14 C173 14 162 24 158 42 L143 98 L140 178 L143 258 C145 274 154 282 168 282 L252 282 C266 282 275 274 277 258 L280 178 L277 98 L262 42 C258 24 247 14 230 14 Z" pathLength="100"/>
       </g>
-      <g class="sc-frame">
-        <path d="M70 52 H350 L382 96 V186 L344 228 H76 L38 186 V96 Z" pathLength="100"/>
+      <g class="sc-glass">
+        <path d="M163 88 L257 88 L261 212 L159 212 Z" pathLength="100"/>
+        <path d="M160 150 H260" pathLength="100"/>
+        <path d="M166 28 L187 22 M254 28 L233 22" pathLength="100"/>
       </g>
-      <g class="sc-inner">
-        <path d="M104 88 H316 L344 120 V168 L310 196 H110 L76 168 V120 Z" pathLength="100"/>
-        <path d="M152 88 V196" pathLength="100"/>
-        <path d="M268 88 V196" pathLength="100"/>
+      <g class="sc-wheel">
+        <rect x="122" y="66" width="22" height="58" rx="4"/>
+        <rect x="276" y="66" width="22" height="58" rx="4"/>
+        <rect x="122" y="196" width="22" height="58" rx="4"/>
+        <rect x="276" y="196" width="22" height="58" rx="4"/>
+      </g>
+      <g class="sc-part">
+        <path d="M148 80 L272 80 L282 96 L282 118 L268 132 L152 132 L138 118 L138 96 Z" pathLength="100"/>
+        <path d="M158 92 L262 120" pathLength="100"/>
+        <path d="M262 92 L158 120" pathLength="100"/>
+        <path d="M140 204 V246" pathLength="100"/>
+        <path d="M280 204 V246" pathLength="100"/>
+        <path d="M140 228 H280" pathLength="100"/>
+        <path d="M145 210 C156 204 172 201 186 201" pathLength="100"/>
+        <path d="M275 210 C264 204 248 201 234 201" pathLength="100"/>
       </g>
       <g class="sc-bush">
-        <circle cx="70" cy="52" r="15"/><circle cx="70" cy="52" r="7"/>
-        <circle cx="350" cy="52" r="15"/><circle cx="350" cy="52" r="7"/>
-        <circle cx="76" cy="228" r="15"/><circle cx="76" cy="228" r="7"/>
-        <circle cx="344" cy="228" r="15"/><circle cx="344" cy="228" r="7"/>
+        <circle cx="150" cy="90" r="7"/><circle cx="270" cy="90" r="7"/>
+        <circle cx="150" cy="122" r="7"/><circle cx="270" cy="122" r="7"/>
+        <circle cx="186" cy="201" r="6"/><circle cx="234" cy="201" r="6"/>
       </g>
-      <g class="sc-mark">
-        <path d="M210 24 V40 M202 32 H218"/>
+      <g class="sc-target">
+        <circle cx="133" cy="95" r="20"/><circle cx="287" cy="95" r="20"/>
+        <circle cx="133" cy="225" r="20"/><circle cx="287" cy="225" r="20"/>
+        <path d="M133 64 V126 M287 64 V126 M104 95 H162 M258 95 H316"/>
+        <path d="M133 194 V256 M287 194 V256 M104 225 H162 M258 225 H316"/>
       </g>
     </svg>
     <div class="loader-sweep"></div>
     <div class="loader-logo"><img src="images/logo.svg" alt="Euro Subframes" width="566" height="247"></div>
     <div class="loader-readout">
-      <span>Loading catalogue</span>
+      <span>Subframes &middot; Axles &middot; Arms</span>
       <b id="loader-pct">00</b>
     </div>
     <div class="loader-rail"><i id="loader-bar"></i></div>
@@ -74,6 +88,14 @@
           <a href="shop.html" class="drop-all">View All Parts</a>
         </div>
       </div>
+      <div class="nav-drop">
+        <a href="index.html#find" aria-haspopup="true">Find Part <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="drop-menu">
+          <a href="index.html#reg">By Registration</a>
+          <a href="index.html#finder">By Make &amp; Model</a>
+          <a href="shop.html" class="drop-all">Browse All Parts</a>
+        </div>
+      </div>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -86,17 +108,22 @@
 </header>
 
 <main>
+<div class="makes" aria-label="Vehicle makes we cover">
+  <div class="container makes-head"><span>Parts for 25+ makes</span><a href="shop.html">View all parts <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+  <div class="marquee"><a href="shop.html?q=Audi">Audi</a><a href="shop.html?q=BMW">BMW</a><a href="shop.html?q=Citroen">Citroen</a><a href="shop.html?q=Dacia">Dacia</a><a href="shop.html?q=Fiat">Fiat</a><a href="shop.html?q=Ford">Ford</a><a href="shop.html?q=Honda">Honda</a><a href="shop.html?q=Hyundai">Hyundai</a><a href="shop.html?q=Jeep">Jeep</a><a href="shop.html?q=Kia">Kia</a><a href="shop.html?q=Land+Rover">Land Rover</a><a href="shop.html?q=Mazda">Mazda</a><a href="shop.html?q=Mercedes">Mercedes</a><a href="shop.html?q=Mini">Mini</a><a href="shop.html?q=Mitsubishi">Mitsubishi</a><a href="shop.html?q=Nissan">Nissan</a><a href="shop.html?q=Peugeot">Peugeot</a><a href="shop.html?q=Renault">Renault</a><a href="shop.html?q=Seat">Seat</a><a href="shop.html?q=Skoda">Skoda</a><a href="shop.html?q=Subaru">Subaru</a><a href="shop.html?q=Suzuki">Suzuki</a><a href="shop.html?q=Toyota">Toyota</a><a href="shop.html?q=Vauxhall">Vauxhall</a><a href="shop.html?q=VW">VW</a><a href="shop.html?q=Audi">Audi</a><a href="shop.html?q=BMW">BMW</a><a href="shop.html?q=Citroen">Citroen</a><a href="shop.html?q=Dacia">Dacia</a><a href="shop.html?q=Fiat">Fiat</a><a href="shop.html?q=Ford">Ford</a><a href="shop.html?q=Honda">Honda</a><a href="shop.html?q=Hyundai">Hyundai</a><a href="shop.html?q=Jeep">Jeep</a><a href="shop.html?q=Kia">Kia</a><a href="shop.html?q=Land+Rover">Land Rover</a><a href="shop.html?q=Mazda">Mazda</a><a href="shop.html?q=Mercedes">Mercedes</a><a href="shop.html?q=Mini">Mini</a><a href="shop.html?q=Mitsubishi">Mitsubishi</a><a href="shop.html?q=Nissan">Nissan</a><a href="shop.html?q=Peugeot">Peugeot</a><a href="shop.html?q=Renault">Renault</a><a href="shop.html?q=Seat">Seat</a><a href="shop.html?q=Skoda">Skoda</a><a href="shop.html?q=Subaru">Subaru</a><a href="shop.html?q=Suzuki">Suzuki</a><a href="shop.html?q=Toyota">Toyota</a><a href="shop.html?q=Vauxhall">Vauxhall</a><a href="shop.html?q=VW">VW</a></div>
+</div>
+
 <section class="hero">
   <div class="hero-bg" style="background-image:url(https://images.unsplash.com/photo-1764869427640-bb45c2fbda1d?w=2000&q=70)"></div>
   <div class="container">
-    <div class="reveal">
+    <div class="hero-copy reveal">
       <span class="eyebrow">40+ Years in the Motor Trade</span>
       <h1>Precision <span>Subframes</span> &amp; Axles, Built to Last.</h1>
       <div class="dimline"><span>Family run</span><span>Downpatrick, Co Down</span><span>Ships worldwide</span></div>
       <p class="lead">A proud family-run business supplying corrosion-resistant subframes, rear axles and suspension arms to garages and drivers across the UK, Ireland and Europe.</p>
       <div class="hero-actions">
         <a href="shop.html" class="btn btn-primary">Shop Parts <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="#finder" class="btn btn-outline">Search by Make &amp; Model</a>
+        <a href="#find" class="btn btn-outline">Find My Part</a>
       </div>
       <div class="hero-stats">
         <div><strong>50K+</strong><span>Happy customers</span></div>
@@ -104,30 +131,8 @@
         <div><strong>11AM</strong><span>Same-day cut-off</span></div>
       </div>
     </div>
-    <div class="reg-card reveal" id="reg">
-      <span class="eyebrow">Find Your Part</span>
-      <h2>Search by Registration</h2>
-      <p>Enter your reg and we'll show the subframes, axles and arms that fit your vehicle.</p>
-      <form id="reg-form" class="reg-form" autocomplete="off">
-        <label class="plate" for="reg-input">
-          <span class="plate-band"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="#ffd500" stroke-width="1.6" stroke-dasharray="1.2 3.1"/></svg><b>UK</b></span>
-          <input id="reg-input" name="reg" placeholder="ENTER REG" maxlength="8" spellcheck="false" aria-label="Vehicle registration">
-        </label>
-        <button class="btn btn-primary" type="submit">Find Parts <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-      </form>
-      <p class="reg-msg" id="reg-msg" hidden></p>
-      <ul class="reg-points">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> Guaranteed fitment check</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Same day dispatch before 11am</li>
-      </ul>
-    </div>
   </div>
 </section>
-
-<div class="makes" aria-label="Vehicle makes we cover">
-  <div class="container makes-head"><span>Parts for 25+ makes</span><a href="shop.html">View all parts <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
-  <div class="marquee"><a href="shop.html?q=Audi">Audi</a><a href="shop.html?q=BMW">BMW</a><a href="shop.html?q=Citroen">Citroen</a><a href="shop.html?q=Dacia">Dacia</a><a href="shop.html?q=Fiat">Fiat</a><a href="shop.html?q=Ford">Ford</a><a href="shop.html?q=Honda">Honda</a><a href="shop.html?q=Hyundai">Hyundai</a><a href="shop.html?q=Jeep">Jeep</a><a href="shop.html?q=Kia">Kia</a><a href="shop.html?q=Land+Rover">Land Rover</a><a href="shop.html?q=Mazda">Mazda</a><a href="shop.html?q=Mercedes">Mercedes</a><a href="shop.html?q=Mini">Mini</a><a href="shop.html?q=Mitsubishi">Mitsubishi</a><a href="shop.html?q=Nissan">Nissan</a><a href="shop.html?q=Peugeot">Peugeot</a><a href="shop.html?q=Renault">Renault</a><a href="shop.html?q=Seat">Seat</a><a href="shop.html?q=Skoda">Skoda</a><a href="shop.html?q=Subaru">Subaru</a><a href="shop.html?q=Suzuki">Suzuki</a><a href="shop.html?q=Toyota">Toyota</a><a href="shop.html?q=Vauxhall">Vauxhall</a><a href="shop.html?q=VW">VW</a><a href="shop.html?q=Audi">Audi</a><a href="shop.html?q=BMW">BMW</a><a href="shop.html?q=Citroen">Citroen</a><a href="shop.html?q=Dacia">Dacia</a><a href="shop.html?q=Fiat">Fiat</a><a href="shop.html?q=Ford">Ford</a><a href="shop.html?q=Honda">Honda</a><a href="shop.html?q=Hyundai">Hyundai</a><a href="shop.html?q=Jeep">Jeep</a><a href="shop.html?q=Kia">Kia</a><a href="shop.html?q=Land+Rover">Land Rover</a><a href="shop.html?q=Mazda">Mazda</a><a href="shop.html?q=Mercedes">Mercedes</a><a href="shop.html?q=Mini">Mini</a><a href="shop.html?q=Mitsubishi">Mitsubishi</a><a href="shop.html?q=Nissan">Nissan</a><a href="shop.html?q=Peugeot">Peugeot</a><a href="shop.html?q=Renault">Renault</a><a href="shop.html?q=Seat">Seat</a><a href="shop.html?q=Skoda">Skoda</a><a href="shop.html?q=Subaru">Subaru</a><a href="shop.html?q=Suzuki">Suzuki</a><a href="shop.html?q=Toyota">Toyota</a><a href="shop.html?q=Vauxhall">Vauxhall</a><a href="shop.html?q=VW">VW</a></div>
-</div>
 
 <section class="trust">
   <div class="container">
@@ -185,20 +190,50 @@
   </div>
 </section>
 
-<section id="finder" style="padding-bottom:clamp(64px,9vw,110px)">
+<section class="section find-section" id="find">
   <div class="container">
-    <div class="finder reveal">
-      <div>
-        <span class="eyebrow" data-i="02">Part Finder</span>
-        <h2>Search by Vehicle</h2>
-        <p>Choose your make, model and part to see what fits.</p>
+    <div class="section-head reveal">
+      <div><span class="eyebrow" data-i="02">Part Finder</span><h2>Find Your Part</h2></div>
+      <p>Two ways in &mdash; give us your registration, or pick your make and model.</p>
+    </div>
+    <div class="find-grid">
+
+      <div class="panel reveal" id="reg">
+        <span class="panel-n">Option 01</span>
+        <h3>Search by Registration</h3>
+        <p>Enter your reg and we'll show the subframes, axles and arms that fit your vehicle.</p>
+        <form id="reg-form" class="reg-form" autocomplete="off">
+          <label class="plate" for="reg-input">
+            <span class="plate-band"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="#ffd500" stroke-width="1.6" stroke-dasharray="1.2 3.1"/></svg><b>UK</b></span>
+            <input id="reg-input" name="reg" placeholder="ENTER REG" maxlength="8" spellcheck="false" aria-label="Vehicle registration">
+          </label>
+          <button class="btn btn-primary" type="submit">Find Parts <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </form>
+        <p class="reg-msg" id="reg-msg" hidden></p>
+        <ul class="reg-points">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> Guaranteed fitment check</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Same day dispatch before 11am</li>
+        </ul>
       </div>
-      <form id="finder">
-        <div><label for="make">Make</label><select id="make"><option value="">Any make</option></select></div>
-        <div><label for="model">Model</label><select id="model"><option value="">Any model</option></select></div>
-        <div><label for="part">Part</label><select id="part"><option value="">Any part</option><option value="front-subframe">Front Subframe</option><option value="rear-subframe">Rear Subframe</option><option value="axles">Rear Axle</option><option value="arms">Suspension Arm</option></select></div>
-        <div style="display:flex;align-items:end"><button class="btn btn-primary" type="submit" style="width:100%">Search</button></div>
-      </form>
+
+      <div class="panel reveal" id="finder">
+        <span class="panel-n">Option 02</span>
+        <h3>Search by Make &amp; Model</h3>
+        <p>Pick your vehicle and the part you're after, and we'll filter the catalogue for you.</p>
+        <form id="finder-form" class="finder-form">
+          <div class="field-row">
+            <div><label for="make">Make</label><select id="make"><option value="">Any make</option></select></div>
+            <div><label for="model">Model</label><select id="model"><option value="">Any model</option></select></div>
+          </div>
+          <div><label for="part">Part type</label><select id="part"><option value="">Any part</option><option value="front-subframe">Front Subframe</option><option value="rear-subframe">Rear Subframe</option><option value="axles">Rear Axle</option><option value="arms">Suspension Arm</option></select></div>
+          <button class="btn btn-primary" type="submit">Search Parts <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </form>
+        <ul class="reg-points">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg> 133 parts in stock</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg> UK, Ireland &amp; worldwide</li>
+        </ul>
+      </div>
+
     </div>
   </div>
 </section>
@@ -355,6 +390,7 @@
           <li><a href="shop.html?cat=front-subframe">Front Subframes</a></li>
           <li><a href="shop.html?cat=rear-subframe">Rear Subframes</a></li>
           <li><a href="shop.html?cat=arms">Suspension Arms</a></li>
+          <li><a href="https://www.ebay.co.uk/usr/eurosubframes" rel="noopener" target="_blank">Our eBay Store &#8599;</a></li>
         </ul>
       </div>
       <div>
