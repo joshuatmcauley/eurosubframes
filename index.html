@@ -25,7 +25,16 @@
     <a href="index.html" class="logo" aria-label="Euro Subframes home"><img src="images/logo.svg" alt="Euro Subframes" width="566" height="247"></a>
     <nav class="nav" aria-label="Main">
       <a href="index.html" class="active">Home</a>
-      <a href="shop.html">Shop</a>
+      <div class="nav-drop">
+        <a href="shop.html" aria-haspopup="true">Shop <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="drop-menu">
+          <a href="shop.html?cat=front-subframe">Front Subframes</a>
+          <a href="shop.html?cat=rear-subframe">Rear Subframes</a>
+          <a href="shop.html?cat=axles">Rear Axles</a>
+          <a href="shop.html?cat=arms">Suspension Arms</a>
+          <a href="shop.html" class="drop-all">View All Parts</a>
+        </div>
+      </div>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -39,6 +48,7 @@
 
 <main>
 <section class="hero">
+  <div class="hero-bg" style="background-image:url(https://images.unsplash.com/photo-1764869427640-bb45c2fbda1d?w=2000&q=70)"></div>
   <div class="container">
     <div class="reveal">
       <span class="eyebrow">40+ Years in the Motor Trade</span>
@@ -46,7 +56,7 @@
       <p class="lead">A proud family-run business supplying corrosion-resistant subframes, rear axles and suspension arms to garages and drivers across the UK, Ireland and Europe.</p>
       <div class="hero-actions">
         <a href="shop.html" class="btn btn-primary">Shop Parts <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="#finder" class="btn btn-outline">Find My Part</a>
+        <a href="#finder" class="btn btn-outline">Search by Make &amp; Model</a>
       </div>
       <div class="hero-stats">
         <div><strong>50K+</strong><span>Happy customers</span></div>
@@ -54,13 +64,30 @@
         <div><strong>11AM</strong><span>Same-day cut-off</span></div>
       </div>
     </div>
-    <div class="hero-visual reveal">
-      <div class="plate"><img src="https://eurosubframes.com/cdn/shop/files/rear-subframe_74b2c61f-2734-4741-9910-777641388dea.jpg" alt="Electrophoretic coated rear subframe"></div>
-      <div class="badge badge-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><div>E-Coated Finish<small>Rust &amp; corrosion resistant</small></div></div>
-      <div class="badge badge-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><div>Ships Worldwide<small>Fast, tracked delivery</small></div></div>
+    <div class="reg-card reveal" id="reg">
+      <span class="eyebrow">Find Your Part</span>
+      <h2>Search by Registration</h2>
+      <p>Enter your reg and we'll show the subframes, axles and arms that fit your vehicle.</p>
+      <form id="reg-form" class="reg-form" autocomplete="off">
+        <label class="plate" for="reg-input">
+          <span class="plate-band"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="#ffd500" stroke-width="1.6" stroke-dasharray="1.2 3.1"/></svg><b>UK</b></span>
+          <input id="reg-input" name="reg" placeholder="ENTER REG" maxlength="8" spellcheck="false" aria-label="Vehicle registration">
+        </label>
+        <button class="btn btn-primary" type="submit">Find Parts <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </form>
+      <p class="reg-msg" id="reg-msg" hidden></p>
+      <ul class="reg-points">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> Guaranteed fitment check</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Same day dispatch before 11am</li>
+      </ul>
     </div>
   </div>
 </section>
+
+<div class="makes" aria-label="Vehicle makes we cover">
+  <div class="container makes-head"><span>Parts for 25+ makes</span><a href="shop.html">View all parts <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+  <div class="marquee"><a href="shop.html?q=Audi">Audi</a><a href="shop.html?q=BMW">BMW</a><a href="shop.html?q=Citroen">Citroen</a><a href="shop.html?q=Dacia">Dacia</a><a href="shop.html?q=Fiat">Fiat</a><a href="shop.html?q=Ford">Ford</a><a href="shop.html?q=Honda">Honda</a><a href="shop.html?q=Hyundai">Hyundai</a><a href="shop.html?q=Jeep">Jeep</a><a href="shop.html?q=Kia">Kia</a><a href="shop.html?q=Land+Rover">Land Rover</a><a href="shop.html?q=Mazda">Mazda</a><a href="shop.html?q=Mercedes">Mercedes</a><a href="shop.html?q=Mini">Mini</a><a href="shop.html?q=Mitsubishi">Mitsubishi</a><a href="shop.html?q=Nissan">Nissan</a><a href="shop.html?q=Peugeot">Peugeot</a><a href="shop.html?q=Renault">Renault</a><a href="shop.html?q=Seat">Seat</a><a href="shop.html?q=Skoda">Skoda</a><a href="shop.html?q=Subaru">Subaru</a><a href="shop.html?q=Suzuki">Suzuki</a><a href="shop.html?q=Toyota">Toyota</a><a href="shop.html?q=Vauxhall">Vauxhall</a><a href="shop.html?q=VW">VW</a><a href="shop.html?q=Audi">Audi</a><a href="shop.html?q=BMW">BMW</a><a href="shop.html?q=Citroen">Citroen</a><a href="shop.html?q=Dacia">Dacia</a><a href="shop.html?q=Fiat">Fiat</a><a href="shop.html?q=Ford">Ford</a><a href="shop.html?q=Honda">Honda</a><a href="shop.html?q=Hyundai">Hyundai</a><a href="shop.html?q=Jeep">Jeep</a><a href="shop.html?q=Kia">Kia</a><a href="shop.html?q=Land+Rover">Land Rover</a><a href="shop.html?q=Mazda">Mazda</a><a href="shop.html?q=Mercedes">Mercedes</a><a href="shop.html?q=Mini">Mini</a><a href="shop.html?q=Mitsubishi">Mitsubishi</a><a href="shop.html?q=Nissan">Nissan</a><a href="shop.html?q=Peugeot">Peugeot</a><a href="shop.html?q=Renault">Renault</a><a href="shop.html?q=Seat">Seat</a><a href="shop.html?q=Skoda">Skoda</a><a href="shop.html?q=Subaru">Subaru</a><a href="shop.html?q=Suzuki">Suzuki</a><a href="shop.html?q=Toyota">Toyota</a><a href="shop.html?q=Vauxhall">Vauxhall</a><a href="shop.html?q=VW">VW</a></div>
+</div>
 
 <section class="trust">
   <div class="container">
@@ -78,21 +105,41 @@
       <p>Every subframe comes complete with bushes and an electrophoretic coating, ready to fit.</p>
     </div>
     <div class="cats">
-      <a class="cat reveal" href="shop.html?cat=axles">
-        <div class="cat-img"><img src="https://eurosubframes.com/cdn/shop/files/rear-axle.jpg" alt="Rear Axles" loading="lazy"></div>
-        <div class="cat-body"><div><h3>Rear Axles</h3><small>16 makes covered</small></div><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-      </a>
       <a class="cat reveal" href="shop.html?cat=front-subframe">
-        <div class="cat-img"><img src="https://eurosubframes.com/cdn/shop/files/front-subframe_ab5b2ead-38f8-4f5a-96e3-edf789f34e47.jpg" alt="Front Subframes" loading="lazy"></div>
-        <div class="cat-body"><div><h3>Front Subframes</h3><small>100+ fitments</small></div><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <img src="https://images.unsplash.com/photo-1760317890359-4e6bb111e501?w=800&h=1000&fit=crop" alt="" loading="lazy">
+        <div class="cat-body">
+          <span class="cat-count">45 parts</span>
+          <h3>Front Subframes</h3>
+          <small>Engine cradles &amp; crossmembers</small>
+          <span class="cat-link">Shop now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
       </a>
       <a class="cat reveal" href="shop.html?cat=rear-subframe">
-        <div class="cat-img"><img src="https://eurosubframes.com/cdn/shop/files/rear-subframe_74b2c61f-2734-4741-9910-777641388dea.jpg" alt="Rear Subframes" loading="lazy"></div>
-        <div class="cat-body"><div><h3>Rear Subframes</h3><small>100+ fitments</small></div><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <img src="https://images.unsplash.com/photo-1769218401073-71a5b1020c9b?w=800&h=1000&fit=crop" alt="" loading="lazy">
+        <div class="cat-body">
+          <span class="cat-count">38 parts</span>
+          <h3>Rear Subframes</h3>
+          <small>Complete with bushes</small>
+          <span class="cat-link">Shop now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <a class="cat reveal" href="shop.html?cat=axles">
+        <img src="https://images.unsplash.com/photo-1533731776909-0ebd63db78e0?w=800&h=1000&fit=crop" alt="" loading="lazy">
+        <div class="cat-body">
+          <span class="cat-count">38 parts</span>
+          <h3>Rear Axles</h3>
+          <small>Beams &amp; torsion axles</small>
+          <span class="cat-link">Shop now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
       </a>
       <a class="cat reveal" href="shop.html?cat=arms">
-        <div class="cat-img"><img src="https://eurosubframes.com/cdn/shop/files/arms_37f98b6e-e0f1-41d2-990b-478040298c64.jpg" alt="Suspension Arms" loading="lazy"></div>
-        <div class="cat-body"><div><h3>Suspension Arms</h3><small>Nissan & Toyota</small></div><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <img src="https://images.unsplash.com/photo-1760836395763-25ea44ae8145?w=800&h=1000&fit=crop&crop=top" alt="" loading="lazy">
+        <div class="cat-body">
+          <span class="cat-count">8 parts</span>
+          <h3>Suspension Arms</h3>
+          <small>Wishbones &amp; trailing arms</small>
+          <span class="cat-link">Shop now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
       </a>
     </div>
   </div>
@@ -191,7 +238,6 @@
   </div>
 </section>
 
-<div class="makes" aria-label="Vehicle makes we cover"><div class="marquee"><span>Audi</span><span>BMW</span><span>Citroen</span><span>Dacia</span><span>Fiat</span><span>Ford</span><span>Honda</span><span>Hyundai</span><span>Jeep</span><span>Kia</span><span>Land Rover</span><span>Mazda</span><span>Mercedes</span><span>Mini</span><span>Mitsubishi</span><span>Nissan</span><span>Peugeot</span><span>Renault</span><span>Seat</span><span>Skoda</span><span>Subaru</span><span>Suzuki</span><span>Toyota</span><span>Vauxhall</span><span>VW</span><span>Audi</span><span>BMW</span><span>Citroen</span><span>Dacia</span><span>Fiat</span><span>Ford</span><span>Honda</span><span>Hyundai</span><span>Jeep</span><span>Kia</span><span>Land Rover</span><span>Mazda</span><span>Mercedes</span><span>Mini</span><span>Mitsubishi</span><span>Nissan</span><span>Peugeot</span><span>Renault</span><span>Seat</span><span>Skoda</span><span>Subaru</span><span>Suzuki</span><span>Toyota</span><span>Vauxhall</span><span>VW</span></div></div>
 
 <section class="section">
   <div class="container why">

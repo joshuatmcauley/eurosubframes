@@ -21,7 +21,16 @@
     <a href="index.html" class="logo" aria-label="Euro Subframes home"><img src="images/logo.svg" alt="Euro Subframes" width="566" height="247"></a>
     <nav class="nav" aria-label="Main">
       <a href="index.html">Home</a>
-      <a href="shop.html" class="active">Shop</a>
+      <div class="nav-drop">
+        <a href="shop.html" class="active" aria-haspopup="true">Shop <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="drop-menu">
+          <a href="shop.html?cat=front-subframe">Front Subframes</a>
+          <a href="shop.html?cat=rear-subframe">Rear Subframes</a>
+          <a href="shop.html?cat=axles">Rear Axles</a>
+          <a href="shop.html?cat=arms">Suspension Arms</a>
+          <a href="shop.html" class="drop-all">View All Parts</a>
+        </div>
+      </div>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
