@@ -1,0 +1,27 @@
+# Shopify storefront routes -> the store subdomain
+/cart            https://shop.eurosubframes.com/cart             302
+/cart/*          https://shop.eurosubframes.com/cart/:splat      302
+/checkout        https://shop.eurosubframes.com/checkout         302
+/checkout/*      https://shop.eurosubframes.com/checkout/:splat  302
+/account         https://shop.eurosubframes.com/account          302
+/account/*       https://shop.eurosubframes.com/account/:splat   302
+/policies/*      https://shop.eurosubframes.com/policies/:splat  301
+/apps/*          https://shop.eurosubframes.com/apps/:splat      302
+/tools/*         https://shop.eurosubframes.com/tools/:splat     302
+
+# old collection URLs -> filtered shop page (specific rules must precede the wildcard)
+/collections/axles             /shop?cat=axles             301
+/collections/front-subframe    /shop?cat=front-subframe    301
+/collections/rear-subframe     /shop?cat=rear-subframe     301
+/collections/suspension-arms   /shop?cat=arms              301
+/collections/all               /shop                       301
+/collections                   /shop                       301
+/collections/*                 /shop                       301
+
+# old Shopify pages
+/pages/about     /about     301
+/pages/contact   /contact   301
+/pages/*         /          301
+
+# search
+/search          /shop      301
