@@ -108,7 +108,7 @@ if (cf) {
   cf.addEventListener('submit', (e) => {
     e.preventDefault();
     const d = new FormData(cf);
-    const body = `Name: ${d.get('name')}\nPhone: ${d.get('phone')}\nVehicle: ${d.get('vehicle')}\n\n${d.get('message')}`;
+    const body = `Name: ${d.get('name')}\nEmail: ${d.get('email')}\nPhone: ${d.get('phone')}\nVehicle: ${d.get('vehicle')}\n\n${d.get('message')}`;
     window.location.href = `mailto:michael@eurosubframes.com?subject=${encodeURIComponent('Website enquiry - ' + d.get('name'))}&body=${encodeURIComponent(body)}`;
   });
 }
