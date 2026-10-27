@@ -911,7 +911,7 @@ textarea { min-height: 150px; resize: vertical; font-family: var(--body); }
   .menu-toggle { display: grid; }
   .header-cta .btn { display: none; }
   .drop-menu {
-    position: static; transform: none; opacity: 1; visibility: visible; min-width: 0;
+    position: static; transform: none; opacity: 1; visibility: inherit; min-width: 0;
     background: none; border: 0; box-shadow: none; padding: 0 0 6px 16px;
   }
   .drop-menu::before, .caret { display: none; }
