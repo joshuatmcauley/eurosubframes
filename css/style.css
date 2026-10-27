@@ -495,20 +495,20 @@ p  { margin: 0 0 1em; }
   transition: transform .45s var(--ease), border-color .35s;
 }
 .cat img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;
   filter: grayscale(.55) contrast(1.1) brightness(.9);
   transition: transform .9s var(--ease), filter .6s;
 }
 .cat::before {
-  content: ""; position: absolute; inset: 0; z-index: -1;
+  content: ""; position: absolute; inset: 0; z-index: 1;
   background:
     linear-gradient(180deg, rgba(6, 9, 11, .1) 20%, rgba(6, 9, 11, .72) 62%, rgba(6, 9, 11, .97) 100%);
 }
-.cat::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 0; background: var(--red); transition: width .5s var(--ease); }
+.cat::after { content: ""; position: absolute; z-index: 2; left: 0; bottom: 0; height: 2px; width: 0; background: var(--red); transition: width .5s var(--ease); }
 .cat:hover { transform: translateY(-7px); border-color: rgba(227, 6, 19, .45); }
 .cat:hover img { transform: scale(1.09); filter: grayscale(0) contrast(1.05) brightness(1); }
 .cat:hover::after { width: 100%; }
-.cat-body { padding: 26px 24px; width: 100%; }
+.cat-body { position: relative; z-index: 2; padding: 26px 24px; width: 100%; }
 .cat-count {
   display: inline-block; font-family: var(--mono); background: var(--red); color: #fff;
   font-size: .62rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
